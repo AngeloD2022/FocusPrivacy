@@ -1,6 +1,8 @@
 (function () {
     console.log("FocusPrivacy: payload injected.");
 
+    // TODO: implement some way to interact with these functions from the popup UI.
+
     let removedCallbacks = {
         "blur": [],
         "focus": []
@@ -20,6 +22,7 @@
 
     function monkeypatchWindow() {
         // if the site uses window.onfocus or window.onblur, we need to overwrite the callbacks.
+        // TODO: store these callbacks somewhere so we can reapply them later if the user wants to disable protection.
         window.onfocus = function () {};
         window.onblur = function () {};
     }
@@ -31,7 +34,7 @@
     }
 
     // We need to first monkeypatch addEventListener to record any pertinent callback functions.
-    // This is necessary because getEventListeners() is only exposed to the console.
+    // This is necessary because getEventListeners() is only exposed to the devtools console.
     Window.prototype._addEventListener = Window.prototype.addEventListener;
     Window.prototype.addEventListener = function (type, listener, options) {
         if (type in removedCallbacks) {

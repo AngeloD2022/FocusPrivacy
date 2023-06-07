@@ -3,17 +3,13 @@
   "name": "FocusPrivacy",
   "version": "1.0.0",
   "description": "FocusPrivacy is a browser extension that prevents websites from knowing if the window loses focus.",
-  "background": {
-    "service_worker": "js/background.js"
-  },
   "permissions": [
     "tabs",
     "activeTab",
     "scripting"
   ],
   "action": {
-    "default_title": "FocusPrivacy",
-    "default_popup": "popup.html"
+    "default_title": "FocusPrivacy"
   },
   "content_scripts": [
     {
@@ -22,9 +18,5 @@
       "run_at": "document_start",
       "world": "MAIN"
     }
-  ],
-  "web_accessible_resources": [{
-    "resources": ["js/inject.js"],
-    "matches": ["<all_urls>"]
-  }]
+  ]
 }
