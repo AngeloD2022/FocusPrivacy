@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p id="window_status">Initial content.</p>
+<p id="window_status_property">Initial content.</p>
+
+<p id="document_status">Initial content.</p>
+<p id="document_status_property">Initial content.</p>
+
+
+<script>
+
+  let windowStatusLbl = document.getElementById("window_status");
+  let windowStatusPropLbl = document.getElementById("window_status_property");
+
+  let documentStatusLbl = document.getElementById("document_status");
+
+
+
+  window.addEventListener("focus", function(event) {
+    windowStatusLbl.innerHTML = "Window: Focused";
+  }, false);
+
+  window.addEventListener("blur", function(event) {
+    windowStatusLbl.innerHTML = "Window: Not focused";
+  }, false);
+
+  window.onfocus = function() {
+    windowStatusPropLbl.innerHTML = "Window Callback Prop: Focused";
+  };
+
+  window.onblur = function() {
+      windowStatusPropLbl.innerHTML = "Window Callback Prop: Blurred";
+  };
+
+
+
+  document.addEventListener("focus", function(event) {
+    documentStatusLbl.innerHTML = "Document: Focused";
+  }, false);
+
+  document.addEventListener("blur", function(event) {
+    documentStatusLbl.innerHTML = "Document: Not focused";
+  }, false);
+
+  document.onfocus = function() {
+    documentStatusLbl.innerHTML = "Document Callback Prop: Focused";
+  };
+
+  document.onblur = function() {
+    documentStatusLbl.innerHTML = "Document Callback Prop: Blurred";
+  };
+
+  console.log("Event listeners registered.");
+
+</script>
+
+</body>
+</html>
