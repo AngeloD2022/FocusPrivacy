@@ -8,11 +8,6 @@
     "48": "images/icon48.png",
     "128": "images/icon128.png"
   },
-  "permissions": [
-    "tabs",
-    "activeTab",
-    "scripting"
-  ],
   "action": {
     "default_title": "FocusPrivacy",
     "default_icon": "images/icon128.png"
