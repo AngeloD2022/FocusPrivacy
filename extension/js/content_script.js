@@ -94,7 +94,7 @@
         console.log("FocusPrivacy: runtime patch complete.");
 
         setInterval(function(){
-            if ((window.onblur && window.onblur !== onblurImpostor) || (window.onfocus && window.onfocus !== onfocusImpostor)) {
+            if (window.onblur && window.onblur !== onblurImpostor || window.onfocus && window.onfocus !== onfocusImpostor) {
                 monkeypatchWindow();
                 console.log("FocusPrivacy: window patch re-applied.");
             }
