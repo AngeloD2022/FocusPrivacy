@@ -20,25 +20,26 @@
 
   let documentStatusLbl = document.getElementById("document_status");
 
+  function subscribe() {
+      window.addEventListener("focus", function(event) {
+          windowStatusLbl.innerHTML = "Window: Focused";
+      }, false);
 
+      window.addEventListener("blur", function(event) {
+          windowStatusLbl.innerHTML = "Window: Not focused";
+      }, false);
 
-  window.addEventListener("focus", function(event) {
-    windowStatusLbl.innerHTML = "Window: Focused";
-  }, false);
+      window.onfocus = function() {
+          windowStatusPropLbl.innerHTML = "Window Callback Prop: Focused";
+      };
 
-  window.addEventListener("blur", function(event) {
-    windowStatusLbl.innerHTML = "Window: Not focused";
-  }, false);
+      window.onblur = function() {
+          windowStatusPropLbl.innerHTML = "Window Callback Prop: Blurred";
+      };
 
-  window.onfocus = function() {
-    windowStatusPropLbl.innerHTML = "Window Callback Prop: Focused";
-  };
-
-  window.onblur = function() {
-      windowStatusPropLbl.innerHTML = "Window Callback Prop: Blurred";
-  };
-
-
+  }
+  subscribe();
+  setTimeout(subscribe, 1000)
 
   document.addEventListener("focus", function(event) {
     documentStatusLbl.innerHTML = "Document: Focused";
