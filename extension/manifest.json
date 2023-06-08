@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "FocusPrivacy",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "FocusPrivacy is a browser extension that prevents websites from knowing if the window loses focus.",
   "icons": {
     "16": "images/icon16.png",
