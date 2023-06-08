@@ -4,7 +4,8 @@
 
     let removedCallbacks = {
         "blur": [],
-        "focus": []
+        "focus": [],
+        "visibilitychange": []
     }
 
     function antiToStringDetection(func){
@@ -75,6 +76,19 @@
         antiToStringDetection(document.hasFocus.toLocaleString);
     }
 
+    function patchProperties() {
+        Object.defineProperty(document, "hidden", {
+            get() {
+                return false;
+            }
+        });
+        Object.defineProperty(document, "visibilityState", {
+            get() {
+                return 'visible';
+            }
+        });
+    }
+
     // prevent "focus" and "blur" events from ever being subscribed.
     Window.prototype._addEventListener = Window.prototype.addEventListener;
     Window.prototype.addEventListener = function (type, listener, options) {
@@ -88,6 +102,7 @@
     }
 
     monkeypatchDocument();
+    patchProperties();
 
     document.addEventListener("DOMContentLoaded",function (e) {
         monkeypatchWindow();
@@ -101,6 +116,10 @@
             if (!document.hasFocus()) {
                 monkeypatchDocument()
                 console.log("FocusPrivacy: document focus patch re-applied.");
+            }
+            if (document.hidden || document.visibilityState !== 'visible') {
+                patchProperties();
+                console.log("FocusPrivacy: document property patch re-applied.");
             }
         }, 1000)
     });
